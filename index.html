@@ -36,6 +36,10 @@
 
     <button onclick="processAndDisplay()">Display</button>
     <hr>
+    <button onclick="processAndDisplayCol()">Show unitg nodes</button>
+    <hr>    
+    <button onclick="processAndDisplayComp()">Display Compact</button>
+    <hr>
 
     <div id="mynetwork" style="min-width:900px;"></div>
 
@@ -59,7 +63,55 @@
 
             visualizeNetwork(toNetworkData(makeGraph(k, reads)));
         }
+    </script>    
+    <script type="text/javascript">
+        var defaultReads = "AACG\nAAGG\nACGT\nAGGT\nCGTT\nGCAA\nGGTT\nGTTG\nTGCA\nTTGC";
+        document.getElementById("genome_reads").value = defaultReads;
+        
+        
+        function processAndDisplayCol() {
+            if (!validateReadsString(document.getElementById("genome_reads").value))
+                return alert("Wrong input!");
+
+            const reads = document.getElementById("genome_reads").value.split("\n");
+            const k = parseInt(document.getElementById("k_size").value);
+
+            if(readsMin(reads).length < k)
+                return alert("Too big kmer size");
+
+            const style = "width: " + document.getElementById("network_width").value +
+                "; height: " + document.getElementById("network_height").value;
+            document.getElementById("mynetwork").setAttribute("style", style);
+            visualizeNetwork(colorNet(toNetworkData(makeGraph(k, reads))));
+        }
+        
+    </script>    
+    </script>    
+    <script type="text/javascript">
+        var defaultReads = "AACG\nAAGG\nACGT\nAGGT\nCGTT\nGCAA\nGGTT\nGTTG\nTGCA\nTTGC";
+        document.getElementById("genome_reads").value = defaultReads;
+        
+        
+        function processAndDisplayComp() {
+            if (!validateReadsString(document.getElementById("genome_reads").value))
+                return alert("Wrong input!");
+
+            const reads = document.getElementById("genome_reads").value.split("\n");
+            const k = parseInt(document.getElementById("k_size").value);
+
+            if(readsMin(reads).length < k)
+                return alert("Too big kmer size");
+
+            const style = "width: " + document.getElementById("network_width").value +
+                "; height: " + document.getElementById("network_height").value;
+            document.getElementById("mynetwork").setAttribute("style", style);
+            visualizeNetwork(compactNet(colorNet(toNetworkData(makeGraph(k, reads)))));
+        }
+        
     </script>
 </body>
 
 </html>
+
+
+
