@@ -13,6 +13,35 @@
             height: 400px;
             border: 1px solid lightgray;
         }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            width: 80%; /* Set a narrower width for the content */
+            margin: auto; /* Center the content horizontally */
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+        }
+
+        .content {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        img {
+            max-width: 100%; /* Set maximum width for the image */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        h1, p {
+            margin-bottom: 10px; /* Add spacing between heading and paragraphs */
+        }
+
+        button {
+            cursor: pointer;
+        }
     </style>
 
     <script src="debruijn.js"></script>
@@ -23,25 +52,36 @@
 
     <hr>
     <label for="k_size">Size of kmer: </label>
-    <input type="number" id="k_size" value="3"><br>
+    <input type="number" id="k_size" value="3">
+    <br>
 
-    <label for="network_width"> Width: </label>
-    <input type="number" id="network_width" value="900"><br>
-
-    <label for="network_height"> Height: </label>
-    <input type="number" id="network_height" value="400"><br>
 
     Enter genome reads. Valid input symbols: ['A', 'C', 'G', 'T', '\n'] <br>
     <textarea id="genome_reads" rows='4' cols='100'></textarea><br>
 
     <button onclick="processAndDisplay()">Display</button>
-    <hr>
     <button onclick="processAndDisplayCol()">Show unitg nodes</button>
-    <hr>    
     <button onclick="processAndDisplayComp()">Display Compact</button>
     <hr>
 
-    <div id="mynetwork" style="min-width:900px;"></div>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <!-- Left Content (Text and Buttons) -->
+        <div style="flex: 1; ">
+            <div id="mynetwork" style="min-width:900px;"></div>
+        </div>
+        <!-- Right Image -->
+        <div style="flex: 0 0 auto;">
+            <img src="./imgExps/KDB.png" style="max-width: 200px; height: auto;">   <!-- Image by https://in.pinterest.com/pin/kevin-de-bruyne-render-manchester-city-view-and-download-football-renders-in-png-now-for-free-by-jokerword-octob--655977501950032689/ */ -->
+        </div>
+
+    </div>
+    
+    <label for="network_width"> Width: </label>
+    <input type="number" id="network_width" value="900">
+
+    <label for="network_height"> Height: </label>
+    <input type="number" id="network_height" value="400"><br>
 
     <script type="text/javascript">
         var defaultReads = "AACG\nAAGG\nACGT\nAGGT\nCGTT\nGCAA\nGGTT\nGTTG\nTGCA\nTTGC";
